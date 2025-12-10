@@ -24,7 +24,7 @@ public class Order_page {
 	@FindBy(xpath="//*[@id=\"__next\"]/header/div[3]/ul/li[4]/ul/li[5]/a") WebElement viewall;
 	@FindBy(xpath="//*[@id=\"__next\"]/main/div[1]/div/div[1]/div/div/ul/li[1]/button") WebElement filter;
 	@FindBy(xpath="//*[@id=\"freshness\"]") WebElement price;
-	@FindBy(xpath="//*[@id=\"19\"]") WebElement category;
+	@FindBy(xpath="//*[@id=\"__next\"]/main/div[1]/div/div[1]/div/div[2]/div/div/div/div[3]/div/div/div/ul/li[3]/span/label") WebElement category;
 	@FindBy(xpath="//*[@id=\"__next\"]/main/div[1]/div/div[1]/div/div[2]/div/div/div/div[4]/button[2]") WebElement showresult;
 	@FindBy(xpath="//*[@id=\"__next\"]/main/div[1]/div/div[2]/div/div[1]/div[2]/a[2]") WebElement buynowbtn;
 	@FindBy(xpath="//*[@id=\"__next\"]/main/div/div/div/div/div[2]/div[3]/a") WebElement proceedtobuy;
@@ -50,13 +50,13 @@ public class Order_page {
         Thread.sleep(2000);
         
         if (!price.isSelected()) {
-            ((JavascriptExecutor)driver).executeScript("arguments[0].click();", price);
+            wait.until(ExpectedConditions.elementToBeClickable(price)).click();
         }
-
 
         if (!category.isSelected()) {
-            ((JavascriptExecutor)driver).executeScript("arguments[0].click();", category);
+            wait.until(ExpectedConditions.elementToBeClickable(category)).click();
         }
+
         showresult.click();
         buynowbtn.click();
         driver.navigate().back();
